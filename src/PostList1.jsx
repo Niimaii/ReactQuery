@@ -1,16 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
 import { getPosts } from './api/posts';
 
-function PostList1() {
+export default function PostsList1() {
   const postsQuery = useQuery({
     queryKey: ['posts'],
     queryFn: getPosts,
+    placeholderData: [{ id: 1, title: 'Initial Data' }],
   });
 
   if (postsQuery.status === 'loading') return <h1>Loading...</h1>;
   if (postsQuery.status === 'error') {
-    return <pre>{JSON.stringify(postsQuery.error)}</pre>;
+    return <h1>{JSON.stringify(postsQuery.error)}</h1>;
   }
+
   return (
     <div>
       <h1>Posts List 1</h1>
@@ -22,5 +24,3 @@ function PostList1() {
     </div>
   );
 }
-
-export default PostList1;

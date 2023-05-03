@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { getPosts } from './api/posts';
 
-function PostList2() {
+export default function PostsList2() {
   const postsQuery = useQuery({
     queryKey: ['posts'],
     queryFn: getPosts,
@@ -9,11 +9,12 @@ function PostList2() {
 
   if (postsQuery.status === 'loading') return <h1>Loading...</h1>;
   if (postsQuery.status === 'error') {
-    return <pre>{JSON.stringify(postsQuery.error)}</pre>;
+    return <h1>{JSON.stringify(postsQuery.error)}</h1>;
   }
+
   return (
     <div>
-      <h1>Posts List 2</h1>
+      <h1>Post List 2</h1>
       <ol>
         {postsQuery.data.map((post) => (
           <li key={post.id}>{post.title}</li>
@@ -22,5 +23,3 @@ function PostList2() {
     </div>
   );
 }
-
-export default PostList2;
