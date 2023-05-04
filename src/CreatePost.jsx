@@ -10,6 +10,7 @@ export default function CreatePost({ setCurrentPage }) {
   const createPostMutation = useMutation({
     mutationFn: createPost,
     onSuccess: (data) => {
+      console.log(data);
       // Need to understand better
       queryClient.setQueryData(['posts', data.id], data);
       queryClient.invalidateQueries(['posts'], { exact: true });
